@@ -72,11 +72,17 @@ angular.module('dibari.angular-ellipsis',[])
 							// If append string was passed and append click function included
 							if (ellipsisSymbol != appendString && typeof(scope.ellipsisAppendClick) !== 'undefined' && scope.ellipsisAppendClick !== '' ) {
 								element.find('span').bind("click", function (e) {
+									cancelEllipsis();
 									scope.$apply(scope.ellipsisAppendClick);
 								});
 							}
 						}
 					}
+				}
+				
+				function cancelEllipsis(){
+					attributes.isTruncated = false;
+					element.text(scope.ngBind);
 				}
 
 			   /**
